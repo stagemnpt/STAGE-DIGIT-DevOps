@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "property_services_schema"
     image:
       repository: "property-services-db"
@@ -27,8 +27,9 @@ healthChecks:
   readinessProbePath: "/property-services/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx384m -Xms256m"
-java-args: "-Dspring.profiles.active=monitoring"
+heap: "-Xmx512m -Xms512m"
+java-args: "-Dspring.profiles.active=uat"
+memory_limits: "512Mi"
 notification-sms-enabled: ""
 employee-allowed-search-params: ""
 citizen-allowed-search-params: ""
@@ -74,7 +75,17 @@ env: |
     valueFrom:
       configMapKeyRef:
         name: egov-service-host
-        key: pt-services-v2      
+        key: pt-services-v2
+  - name: WORKFLOW_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-workflow-v2
+  - name: EGBS_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: billing-service
   {{- if index .Values "global" "tracer-errors-provideexceptionindetails" }}
   - name: TRACER_ERRORS_PROVIDEEXCEPTIONINDETAILS
     valueFrom:
@@ -110,7 +121,7 @@ env: |
   - name: MANAGEMENT_SECURITY_ENABLED
     value: "false"
   - name: ASSESSMENT_WORKFLOW_ENABLED
-    value: "false"
+    value: "true"
   - name: EGOV_IDGEN_ACK_FORMAT
     value: {{ index .Values "egov-idgen-ack-format" | quote }}
   - name: EGOV_IDGEN_MUTATION_FORMAT
