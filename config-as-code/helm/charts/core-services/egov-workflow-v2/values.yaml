@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "egov_workflow_v2_schema"
     image:
       repository: "egov-workflow-v2-db"
