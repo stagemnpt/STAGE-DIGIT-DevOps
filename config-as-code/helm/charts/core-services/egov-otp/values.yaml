@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "egov_otp_schema"
     image:
       repository: "egov-otp-db"
@@ -27,7 +27,7 @@ healthChecks:
   readinessProbePath: "/otp/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx384m -Xms256m"
+heap: "-Xmx1024m -Xms256m"
 
 # Additional Container Envs
 env: |
