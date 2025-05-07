@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "egov_hrms_schema"
     image:
       repository: "egov-hrms-db"
@@ -29,7 +29,7 @@ appType: "java-spring"
 tracing-enabled: true
 employee-applink: "https://egov-micro-dev.egovernments.org/employee/user/login"
 heap: "-Xmx384m -Xms256m"
-java-args: "-Dspring.profiles.active=monitoring"
+java-args: "-Dspring.profiles.active=uat"
 
 # Additional Container Envs
 env: |
