@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "pt_calculator_v2_schema"
     image:
       repository: "pt-calculator-v2-db"
@@ -36,7 +36,7 @@ custom-pb-firecess-logic: ""
 allow-depreciations: "false"
 unbuiltarea-prorated: "false"
 heap: "-Xmx384m -Xms256m"
-java-args: "-Dspring.profiles.active=monitoring"
+java-args: "-Dspring.profiles.active=uat"
 
 # Additional Container Envs
 env: |
@@ -69,6 +69,11 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: collection-services
+  - name: EGOV_ASSESSMENTSERVICE_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: property-services
   - name: LOGGING_LEVEL_ORG_EGOV
     value: {{ index .Values "logging-level" | quote }}
   {{- if index .Values "global" "tracer-errors-provideexceptionindetails" }}
