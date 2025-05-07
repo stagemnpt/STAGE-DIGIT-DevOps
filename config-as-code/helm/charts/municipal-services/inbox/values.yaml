@@ -20,8 +20,9 @@ healthChecks:
   readinessProbePath: "/inbox/health"
 appType: "java-spring"
 tracing-enabled: true
-heap: "-Xmx384m -Xms256m"
-java-args: "-Dspring.profiles.active=monitoring"
+heap: "-Xmx512m -Xms512m"
+java-args: "-Dspring.profiles.active=uat"
+memory_limits: "512Mi"
 
 # Additional Container Envs
 env: |
@@ -30,6 +31,11 @@ env: |
       configMapKeyRef:
         name: egov-service-host
         key: egov-workflow-v2
+  - name: EGOV_SEARCHER_HOST
+    valueFrom:
+      configMapKeyRef:
+        name: egov-service-host
+        key: egov-searcher
   - name: WORKFLOW_PROCESS_SEARCH_PATH
     value: "egov-workflow-v2/egov-wf/process/_search"
   - name: WORKFLOW_BUSINESSSERVICE_SEARCH_PATH
