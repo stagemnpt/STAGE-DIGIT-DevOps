@@ -12,14 +12,14 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "pdf_service_schema"
     image:
       repository: "pdf-service-db"
   gitSync:
     enabled: true
-    repo: "git@github.com:egovernments/configs"
-    branch: "master"
+    repo: "https://github.com/stagemnpt/upyog-configs"
+    branch: "sandbox-v2.0"
 
 # Container Configs
 image:
