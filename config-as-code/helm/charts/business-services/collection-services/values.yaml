@@ -12,7 +12,7 @@ ingress:
 # Init Containers Configs
 initContainers:
   dbMigration:
-    enabled: true
+    enabled: false
     schemaTable: "egov_collection_services_schema"
     image:
       repository: "collection-services-db"
@@ -31,8 +31,9 @@ receipt-search-paginate: "false"
 receipt-search-defaultsize: "30"
 user-create-enabled: "true"
 search-ignore-status: ""
-heap: "-Xmx384m -Xms256m"
-java-args: "-Dspring.profiles.active=monitoring"
+heap: "-Xmx512m -Xms512m"
+memory_limits: "512Mi"
+java-args: "-Dspring.profiles.active=uat"
 java-debug: ""
 receiptnumber-servicebased: "false"
 
