@@ -30,7 +30,7 @@ env: |
   - name: SERVER_PORT
     value: "8080"
   - name: SPRING_REDIS_HOST
-    value: "redis.backbone"
+    value: localhost
   - name: SPRING_REDIS_PORT
     value: "6379"
   - name: OTP_HOST
