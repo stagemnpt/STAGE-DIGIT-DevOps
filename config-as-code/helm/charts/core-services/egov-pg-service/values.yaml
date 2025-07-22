@@ -150,6 +150,30 @@ env: |
         name: egov-pg-service
         key: payumerchantsalt 
   {{- end }}
+  {{- if .Values.paygov }}
+  - name: PAYGOV_ACTIVE
+    value: "true"
+  - name: PAYGOV-MERCHANT-ID
+    valueFrom:
+      secretKeyRef:
+        name: egov-pg-service
+        key: paygov-merchant-id
+  - name: PAYGOV-MERCHANT-SECRET-KEY
+    valueFrom:
+      secretKeyRef:
+        name: egov-pg-service
+        key: paygov-merchant-secret-key
+  - name: PAYGOV-MERCHANT-USER
+    valueFrom:
+      secretKeyRef:
+        name: egov-pg-service
+        key: paygov-merchant-user
+  - name: PAYGOV-MERCHANT-PWD
+    valueFrom:
+      secretKeyRef:
+        name: egov-pg-service
+        key: paygov-merchant-pwd
+  {{- end }}
   {{- if .Values.ccavenue }}
   - name: CCAVENUE_ACTIVE
     value: "true"
