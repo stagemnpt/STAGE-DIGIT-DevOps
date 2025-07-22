@@ -153,22 +153,22 @@ env: |
   {{- if .Values.paygov }}
   - name: PAYGOV_ACTIVE
     value: "true"
-  - name: PAYGOV-MERCHANT-ID
+  - name: PAYGOV_MERCHANT_ID
     valueFrom:
       secretKeyRef:
         name: egov-pg-service
         key: paygov-merchant-id
-  - name: PAYGOV-MERCHANT-SECRET-KEY
+  - name: PAYGOV_MERCHANT_SECRET_KEY
     valueFrom:
       secretKeyRef:
         name: egov-pg-service
         key: paygov-merchant-secret-key
-  - name: PAYGOV-MERCHANT-USER
+  - name: PAYGOV_MERCHANT_USER
     valueFrom:
       secretKeyRef:
         name: egov-pg-service
         key: paygov-merchant-user
-  - name: PAYGOV-MERCHANT-PWD
+  - name: PAYGOV_MERCHANT_PWD
     valueFrom:
       secretKeyRef:
         name: egov-pg-service
